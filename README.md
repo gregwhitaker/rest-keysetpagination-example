@@ -48,6 +48,9 @@ Follow the steps below to run the example:
         
     If successful, you will retrieve employee records `26` - `50`:
 
+## Bugs and Feedback
+For bugs, questions, and discussions please use the [Github Issues](https://github.com/gregwhitaker/rest-keysetpagination-example/issues).
+
 ## License
 MIT License
 
