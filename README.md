@@ -1,7 +1,7 @@
 # rest-keysetpagination-example
 ![Build](https://github.com/gregwhitaker/rest-keysetpagination-example/workflows/Build/badge.svg)
 
-An example of keyset pagination in a RESTful webservice.
+An example of [keyset pagination](https://use-the-index-luke.com/no-offset) in a RESTful webservice.
 
 ## Prerequisites
 This example requires a running PostgreSQL database.
