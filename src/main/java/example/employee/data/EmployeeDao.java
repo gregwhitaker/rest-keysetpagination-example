@@ -55,31 +55,32 @@ public class EmployeeDao {
     /**
      * Gets all employees in the system (paginated).
      *
-     * @param offset record offset to use for pagination
-     * @param limit record limit to use for pagination
+     * @param cursor pagination cursor
      * @return a list of employee information
      */
-    public List<Employee> getEmployees(long offset, long limit) {
-        try (Connection conn = dataSource.getConnection()) {
-            final String sql = "SELECT e.*, d.name AS department_name FROM employees e JOIN departments d on e.department = d.id ORDER BY e.id ASC LIMIT ? OFFSET ?";
+    public List<Employee> getEmployees(String cursor) {
+//        try (Connection conn = dataSource.getConnection()) {
+//            final String sql = "SELECT e.*, d.name AS department_name FROM employees e JOIN departments d on e.department = d.id ORDER BY e.id ASC LIMIT ? OFFSET ?";
+//
+//            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+//                ps.setLong(1, limit);
+//                ps.setLong(2, offset);
+//
+//                try (ResultSet rs = ps.executeQuery()) {
+//                    List<Employee> employees = new ArrayList<>();
+//
+//                    while (rs.next()) {
+//                        employees.add(Employee.from(rs));
+//                    }
+//
+//                    return employees;
+//                }
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException("Error retrieving employees from database.", e);
+//        }
 
-            try (PreparedStatement ps = conn.prepareStatement(sql)) {
-                ps.setLong(1, limit);
-                ps.setLong(2, offset);
-
-                try (ResultSet rs = ps.executeQuery()) {
-                    List<Employee> employees = new ArrayList<>();
-
-                    while (rs.next()) {
-                        employees.add(Employee.from(rs));
-                    }
-
-                    return employees;
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving employees from database.", e);
-        }
+        return null;
     }
 
     /**
