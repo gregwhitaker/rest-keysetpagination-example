@@ -26,6 +26,20 @@ Follow the steps below to run the example:
         
     If successful, you will receive 25 employee records from the database with a link containing a cursor to get the next 25 records.
     
+        {
+          "count": 25,
+          "employees": [
+            ...
+          ],
+          "links": [
+            {
+              "rel": "next",
+              "type": "GET",
+              "href": "/employees?cursor=VapqQ"
+            }
+          ]
+        }
+    
 3. Adjust the url to add the next cursor to paginate through the results:
 
         curl http://localhost:8080/employees?cursor=VapqQ
