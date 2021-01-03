@@ -1,4 +1,6 @@
 # rest-keysetpagination-example
+![Build](https://github.com/gregwhitaker/rest-keysetpagination-example/workflows/Build/badge.svg)
+
 An example of keyset pagination in a RESTful webservice.
 
 ## Prerequisites
