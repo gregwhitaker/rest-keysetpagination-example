@@ -1,14 +1,39 @@
 plugins {
-    id 'java'
+    id "idea"
+    id "java"
+    id "org.springframework.boot"           version "2.4.1"
+    id "io.spring.dependency-management"    version "1.0.10.RELEASE"
+    id "org.flywaydb.flyway"                version "7.3.2"
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+// Project Configuration
+group   = "com.github.gregwhitaker"
+version = "1.0.0"
 
+// Dependency Management
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation "com.zaxxer:HikariCP"
+    implementation "org.flywaydb:flyway-core"
+    implementation "org.springframework:spring-jdbc"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+
+    runtimeOnly "org.postgresql:postgresql"
+}
+
+// Local Development
+task bootRunLocal {
+    bootRun.configure {
+        systemProperty 'spring.profiles.active', 'local'
+    }
+}
+bootRunLocal.finalizedBy bootRun
+
+flyway {
+    url = 'jdbc:postgresql://localhost:5432/postgres'
+    user = 'postgres'
 }
