@@ -26,7 +26,7 @@ public class GetEmployeesResponse {
     public static GetEmployeesResponse from(List<Employee> employees, Hashids hashids) {
         GetEmployeesResponse response = new GetEmployeesResponse();
 
-        if (employees != null || !employees.isEmpty()) {
+        if (employees != null && !employees.isEmpty()) {
             response.setCount(employees.size());
             employees.forEach(employee -> response.getEmployees().add(GetEmployeeResponse.from(employee)));
 
