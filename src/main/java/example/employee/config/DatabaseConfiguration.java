@@ -3,6 +3,7 @@ package example.employee.config;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import example.employee.config.settings.DatabaseSettings;
+import org.hashids.Hashids;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.flyway.FlywayDataSource;
@@ -44,5 +45,10 @@ public class DatabaseConfiguration {
         LOG.info("Configuring Database Connection: {}", hikariConfig.getJdbcUrl());
 
         return new HikariDataSource(hikariConfig);
+    }
+
+    @Bean
+    public Hashids hashids() {
+        return new Hashids("this is a salt value", 5);
     }
 }

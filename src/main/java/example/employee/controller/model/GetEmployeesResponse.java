@@ -2,6 +2,7 @@ package example.employee.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import example.employee.data.model.Employee;
+import org.hashids.Hashids;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,22 +23,16 @@ public class GetEmployeesResponse {
      * @param employees list of employees
      * @return employees response object
      */
-    public static GetEmployeesResponse from(List<Employee> employees) {
+    public static GetEmployeesResponse from(List<Employee> employees, Hashids hashids) {
         GetEmployeesResponse response = new GetEmployeesResponse();
 
         if (employees != null || !employees.isEmpty()) {
             response.setCount(employees.size());
             employees.forEach(employee -> response.getEmployees().add(GetEmployeeResponse.from(employee)));
 
-//            if (offset > 0) {
-//                response.getLinks().add(
-//                        new Link("prev",
-//                                String.format("/employees?offset=%s&limit=%s", Math.max(offset - limit, 0), limit)));
-//            }
-//
-//            response.getLinks().add(
-//                    new Link("next",
-//                            String.format("/employees?offset=%s&limit=%s", offset + limit, limit)));
+            response.getLinks().add(
+                    new Link("next",
+                            String.format("/employees?cursor=%s", hashids.encode(employees.get(employees.size() - 1).getId()))));
         }
 
         return response;
