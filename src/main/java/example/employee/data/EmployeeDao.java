@@ -2,6 +2,7 @@ package example.employee.data;
 
 import example.employee.data.model.Employee;
 import example.employee.data.model.EmployeeAddress;
+import example.employee.error.InvalidCursorException;
 import org.hashids.Hashids;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,7 +74,12 @@ public class EmployeeDao {
                     ps.setLong(1, 0L);
                 } else {
                     long[] decodedCursor = hashids.decode(cursor);
-                    ps.setLong(1, decodedCursor[0]);
+
+                    if (decodedCursor.length > 0) {
+                        ps.setLong(1, decodedCursor[0]);
+                    } else {
+                        throw new InvalidCursorException();
+                    }
                 }
 
                 try (ResultSet rs = ps.executeQuery()) {

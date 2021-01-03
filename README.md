@@ -1,4 +1,36 @@
 # rest-keysetpagination-example
+An example of keyset pagination in a RESTful webservice.
+
+## Prerequisites
+This example requires a running PostgreSQL database.
+
+You can start an instance as a Docker container by running the following command:
+
+    docker run -p 5432:5432 postgres
+
+## Building the Example
+Run the following command to build the example:
+
+    ./gradlew clean build
+
+## Running the Example
+Follow the steps below to run the example:
+
+1. Run the following command to start the example service:
+
+        ./gradlew bootRun
+        
+2. Run the following command to query a list of all of the employees in the company:
+
+        curl http://localhost:8080/employees
+        
+    If successful, you will receive 25 employee records from the database with a link containing a cursor to get the next 25 records.
+    
+3. Adjust the url to add the next cursor to paginate through the results:
+
+        curl http://localhost:8080/employees?cursor=VapqQ
+        
+    If successful, you will retrieve employee records `26` - `50`:
 
 ## License
 MIT License
