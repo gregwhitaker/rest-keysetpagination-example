@@ -6,6 +6,6 @@ package example.employee.error;
 public class InvalidCursorException extends RuntimeException {
 
     public InvalidCursorException() {
-        // Noop
+        super("Invalid pagination cursor.");
     }
 }
